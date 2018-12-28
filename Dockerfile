@@ -14,7 +14,7 @@ RUN ln -s /usr/lib/postgresql/11/bin/pg_ctl /usr/bin/pg_ctl
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entry.sh
 RUN ln -s usr/local/bin/docker-entry.sh / # backwards compat
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entry.sh"]
 
 EXPOSE 5432
 CMD ["postgres"]
