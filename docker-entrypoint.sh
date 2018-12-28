@@ -29,7 +29,7 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 # allow the container to be started with `--user`
-if [ "$1" = 'postgres' ] && [ "$(id -u)" = '0' ]; then
+if  [ "$(id -u)" = '0' ]; then
 	mkdir -p "$PGDATA"
 	chown -R postgres "$PGDATA"
 	chmod 700 "$PGDATA"
@@ -48,7 +48,6 @@ if [ "$1" = 'postgres' ] && [ "$(id -u)" = '0' ]; then
 	exec gosu postgres "$BASH_SOURCE" "$@"
 fi
 
-if [ "$1" = 'postgres' ]; then
 	mkdir -p "$PGDATA"
 	chown -R "$(id -u)" "$PGDATA" 2>/dev/null || :
 	chmod 700 "$PGDATA" 2>/dev/null || :
@@ -157,6 +156,5 @@ if [ "$1" = 'postgres' ]; then
 		echo 'PostgreSQL init process complete; ready for start up.'
 		echo
 	fi
-fi
 
 exec "$@"
