@@ -12,8 +12,8 @@ RUN chmod 777 /usr/lib/postgresql/11/bin/pg_ctl
 
 RUN ln -s /usr/lib/postgresql/11/bin/pg_ctl /usr/bin/pg_ctl
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
+COPY docker-entrypoint.sh /usr/local/bin/docker-entry.sh
+RUN ln -s usr/local/bin/docker-entry.sh / # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 5432
